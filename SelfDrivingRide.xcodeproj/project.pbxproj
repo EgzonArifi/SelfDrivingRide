@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		785ABDED255DC81F00DBDC48 /* HillClimbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */; };
 		78EB5E3B2556C64D00D7B428 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E3A2556C64D00D7B428 /* main.swift */; };
 		78EB5E452556C66500D7B428 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E422556C66500D7B428 /* Ride.swift */; };
 		78EB5E462556C66500D7B428 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E432556C66500D7B428 /* Vehicle.swift */; };
@@ -31,6 +32,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HillClimbing.swift; sourceTree = "<group>"; };
+		785C89B82563D0B5001A5BC5 /* e_high_bonus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_high_bonus.in; sourceTree = "<group>"; };
+		785C89B92563D0B5001A5BC5 /* d_metropolis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = d_metropolis.in; sourceTree = "<group>"; };
+		785C89BA2563D0B5001A5BC5 /* a_example.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = a_example.in; sourceTree = "<group>"; };
+		785C89BB2563D0B5001A5BC5 /* b_should_be_easy.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = b_should_be_easy.in; sourceTree = "<group>"; };
+		785C89BC2563D0B5001A5BC5 /* c_no_hurry.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = c_no_hurry.in; sourceTree = "<group>"; };
+		785C89BE2563D0B5001A5BC5 /* c_no_hurry.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = c_no_hurry.out; sourceTree = "<group>"; };
+		785C89BF2563D0B5001A5BC5 /* d_metropolis.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = d_metropolis.out; sourceTree = "<group>"; };
+		785C89C02563D0B5001A5BC5 /* a_example.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = a_example.out; sourceTree = "<group>"; };
+		785C89C12563D0B5001A5BC5 /* b_should_be_easy.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = b_should_be_easy.out; sourceTree = "<group>"; };
+		785C89C42563D340001A5BC5 /* e_high_bonus.out */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_high_bonus.out; sourceTree = "<group>"; };
+		785C89C72563D6C7001A5BC5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		78EB5E372556C64D00D7B428 /* SelfDrivingRide */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SelfDrivingRide; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EB5E3A2556C64D00D7B428 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		78EB5E422556C66500D7B428 /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
@@ -39,11 +52,6 @@
 		78EB5E492556D96C00D7B428 /* SimulationInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationInput.swift; sourceTree = "<group>"; };
 		78EB5E4C2556DBAC00D7B428 /* Simulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulation.swift; sourceTree = "<group>"; };
 		78EB5E502556EFC800D7B428 /* Reader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reader.swift; sourceTree = "<group>"; };
-		78EB5E6F255705FE00D7B428 /* e_high_bonus.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = e_high_bonus.in; path = ../e_high_bonus.in; sourceTree = "<group>"; };
-		78EB5E70255705FE00D7B428 /* a_example.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = a_example.in; path = ../a_example.in; sourceTree = "<group>"; };
-		78EB5E71255705FE00D7B428 /* b_should_be_easy.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = b_should_be_easy.in; path = ../b_should_be_easy.in; sourceTree = "<group>"; };
-		78EB5E72255705FE00D7B428 /* c_no_hurry.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = c_no_hurry.in; path = ../c_no_hurry.in; sourceTree = "<group>"; };
-		78EB5E73255705FE00D7B428 /* d_metropolis.in */ = {isa = PBXFileReference; lastKnownFileType = text; name = d_metropolis.in; path = ../d_metropolis.in; sourceTree = "<group>"; };
 		78EB5E762557106C00D7B428 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		78EB5E7B2557129400D7B428 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,6 +67,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		785ABDEB255DC80B00DBDC48 /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
+		785C89B62563D0B5001A5BC5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				785C89B72563D0B5001A5BC5 /* input */,
+				785C89BD2563D0B5001A5BC5 /* output */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		785C89B72563D0B5001A5BC5 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				785C89B82563D0B5001A5BC5 /* e_high_bonus.in */,
+				785C89B92563D0B5001A5BC5 /* d_metropolis.in */,
+				785C89BA2563D0B5001A5BC5 /* a_example.in */,
+				785C89BB2563D0B5001A5BC5 /* b_should_be_easy.in */,
+				785C89BC2563D0B5001A5BC5 /* c_no_hurry.in */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
+		785C89BD2563D0B5001A5BC5 /* output */ = {
+			isa = PBXGroup;
+			children = (
+				785C89C42563D340001A5BC5 /* e_high_bonus.out */,
+				785C89BE2563D0B5001A5BC5 /* c_no_hurry.out */,
+				785C89BF2563D0B5001A5BC5 /* d_metropolis.out */,
+				785C89C02563D0B5001A5BC5 /* a_example.out */,
+				785C89C12563D0B5001A5BC5 /* b_should_be_easy.out */,
+			);
+			path = output;
+			sourceTree = "<group>";
+		};
 		78EB5E2E2556C64D00D7B428 = {
 			isa = PBXGroup;
 			children = (
@@ -78,8 +127,10 @@
 		78EB5E392556C64D00D7B428 /* SelfDrivingRide */ = {
 			isa = PBXGroup;
 			children = (
-				78EB5E682557059C00D7B428 /* qualification_round_2018.in */,
+				785C89C72563D6C7001A5BC5 /* README.md */,
+				785C89B62563D0B5001A5BC5 /* Assets */,
 				78EB5E752557106000D7B428 /* Util */,
+				785ABDEB255DC80B00DBDC48 /* Algorithm */,
 				78EB5E442556C66500D7B428 /* Position.swift */,
 				78EB5E422556C66500D7B428 /* Ride.swift */,
 				78EB5E432556C66500D7B428 /* Vehicle.swift */,
@@ -88,19 +139,6 @@
 				78EB5E3A2556C64D00D7B428 /* main.swift */,
 			);
 			path = SelfDrivingRide;
-			sourceTree = "<group>";
-		};
-		78EB5E682557059C00D7B428 /* qualification_round_2018.in */ = {
-			isa = PBXGroup;
-			children = (
-				78EB5E70255705FE00D7B428 /* a_example.in */,
-				78EB5E71255705FE00D7B428 /* b_should_be_easy.in */,
-				78EB5E72255705FE00D7B428 /* c_no_hurry.in */,
-				78EB5E73255705FE00D7B428 /* d_metropolis.in */,
-				78EB5E6F255705FE00D7B428 /* e_high_bonus.in */,
-			);
-			name = qualification_round_2018.in;
-			path = ../../../../../../../Downloads/qualification_round_2018.in;
 			sourceTree = "<group>";
 		};
 		78EB5E752557106000D7B428 /* Util */ = {
@@ -171,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78EB5E7C2557129400D7B428 /* Array.swift in Sources */,
+				785ABDED255DC81F00DBDC48 /* HillClimbing.swift in Sources */,
 				78EB5E4D2556DBAC00D7B428 /* Simulation.swift in Sources */,
 				78EB5E462556C66500D7B428 /* Vehicle.swift in Sources */,
 				78EB5E512556EFC800D7B428 /* Reader.swift in Sources */,

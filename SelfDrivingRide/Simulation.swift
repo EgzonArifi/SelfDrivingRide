@@ -2,62 +2,56 @@ import Foundation
 
 class Simulation {
     
-    static var vehicles: [Vehicle] {
-        
-        var initialVehicles = Vehicle.initial(SimulationInput.numberOfVehicles)
-        
-        SimulationInput.rides.forEach { ride in
-            
-            guard SimulationInput.numberOfSteps > 0 else { return }
-            
-            let fittestVehicleForTheRide = initialVehicles.max {
-                ride.fitness(vehicle: $0) < ride.fitness(vehicle: $1)
-            }
-            
-            guard var vehicle = fittestVehicleForTheRide else { return }
-            SimulationInput.numberOfSteps -= 1
-            
-            switch assignRide(vehicle: &vehicle, ride: ride) {
-            case .success:
-                initialVehicles.addOrUpdate(vehicle: vehicle)
-            default: break
-            }
-        }
-        
-        return initialVehicles
-    }
+    var fitness = 0
+    var rides: [Ride]
+    var vehicles: [Vehicle] = Vehicle.initial(SimulationInput.numberOfVehicles)
     
-    private static func assignRide(vehicle: inout Vehicle, ride: Ride) -> Result<Void, AssignError> {
-        
-        if ride.isRideExpired(vehicle: vehicle) {
-            return .failure(.expiredRide)
-        }
-        
-        vehicle.assignedRides.append(ride)
-        vehicle.score += ride.rideScore(vehicle: vehicle)
-        vehicle.currentStep += ride.updatedCurrentStep(vehicle: vehicle)
-        vehicle.currentPosition = ride.endPosition
-        
-        return .success(())
-    }
-    
-    private static func initialSolution(for vehicles: inout [Vehicle]) {
-        
-        vehicles.forEach { item in
-            var vehicle = item
-            SimulationInput.rides.forEach { ride in
-                switch assignRide(vehicle: &vehicle, ride: ride) {
-                case .success:
-                    vehicles.addOrUpdate(vehicle: vehicle)
-                    SimulationInput.rides.remove(ride)
-                default: break
-                }
-            }
-        }
+    init(rides: [Ride]) {
+        self.rides = rides
+        assignRides()
     }
 }
 
-enum AssignError: Error {
-    case expiredRide
-    case noRide
+extension Simulation {
+    
+    func assignRides() {
+        rides.forEach { ride in
+            let randomVehicle = vehicles.randomElement()
+            if ride.vehicle == nil {
+                ride.vehicle = randomVehicle
+            }
+            guard let firstIndex = self.vehicles.firstIndex(where: { $0.id == randomVehicle?.id } ) else { return }
+            vehicles[firstIndex].assignedRides.append(ride)
+        }
+    }
+    
+    var calculatedFitness: Int {
+        fitness = 0
+        fitness = vehicles.map { $0.calculateFitness() }.reduce(0, +)
+        return fitness
+    }
+}
+
+extension Simulation {
+    
+    func randomHillClimbing() -> Simulation {
+        
+        var population = [Simulation]()
+        
+        for _ in 0..<SimulationInput.numberOfRides {
+            
+            let ride = rides.randomElement()
+            let vehicle = vehicles.randomElement()
+            
+            let swap = ride?.vehicle
+            ride?.vehicle = vehicle
+            
+            population.append(Simulation(rides: rides))
+            
+            ride?.vehicle = swap
+        }
+        
+        guard let fittestElement = (population.max { $0.calculatedFitness < $1.calculatedFitness }) else { return self }
+        return fittestElement
+    }
 }

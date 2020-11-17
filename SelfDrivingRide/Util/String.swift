@@ -11,3 +11,5 @@ extension String {
         return Int(self) ?? 0
     }
 }
+
+let folderPath = "/GitHub/SelfDrivingRide/SelfDrivingRide"
