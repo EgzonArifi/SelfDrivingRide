@@ -6,7 +6,7 @@ Algorithms Implemented
 
 -   [x] Hill Climbing
 
-    Tested with an provided tool
+    Tested it with a provided tool
 
     ![Image](SelfDrivingRide/Assets/Images/hill_climbing_testing_tool.png?raw=true "Title")
 
