@@ -16,12 +16,14 @@ extension Simulation {
     
     func assignRides() {
         rides.forEach { ride in
-            let randomVehicle = vehicles.randomElement()
-            if ride.vehicle == nil {
-                ride.vehicle = randomVehicle
+            guard let randomVehicle = vehicles.randomElement(),
+                  randomVehicle.isRideExpired(ride: ride) == false
+            else {
+                return
             }
-            guard let firstIndex = self.vehicles.firstIndex(where: { $0.id == randomVehicle?.id } ) else { return }
-            vehicles[firstIndex].assignedRides.append(ride)
+            ride.vehicle = randomVehicle
+            guard let firstIndex = self.vehicles.firstIndex(where: { $0.id == randomVehicle.id } ) else { return }
+            vehicles[firstIndex].addRide(ride: ride)
         }
     }
     

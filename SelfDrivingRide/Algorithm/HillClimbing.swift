@@ -22,18 +22,20 @@ struct HillClimbing {
         
         // Evaluate
         let startScore = solution.calculatedFitness
+        var bestSolution = solution
         var bestScore = 0
         print("Start Hill: \(startScore)")
         
         // Mutate
         while bestScore < solution.fitness {
             bestScore = solution.fitness
+            bestSolution = solution
             solution = solution.randomHillClimbing()
             print("New Hill: \(solution.fitness)")
         }
         
         // Write
-        reader.write(vehicles: solution.vehicles, toFile: file)
+        reader.write(vehicles: bestSolution.vehicles, toFile: file)
         
         return bestScore
     }
@@ -44,19 +46,21 @@ struct HillClimbing {
         reader.read(file: file)
         var solution = Simulation(rides: SimulationInput.rides)
         let startScore = solution.calculatedFitness
+        var bestSolution = solution
         var bestScore = 0
         var iterations = maxIterations
         
         print("Start Hill: \(startScore)")
         while iterations > 0 {
             if solution.fitness > bestScore {
+                bestSolution = solution
                 bestScore = solution.fitness
             }
             solution = solution.randomHillClimbing()
             print("New Hill: \(solution.fitness)")
             iterations -= 1
         }
-        reader.write(vehicles: solution.vehicles, toFile: file)
+        reader.write(vehicles: bestSolution.vehicles, toFile: file)
         return bestScore
     }
 }
