@@ -5,7 +5,7 @@ Hash Code With Google - Coding Competition
 Algorithms Implemented
 
 -   [x] Hill Climbing
-
+-   [x] GRASP
     
 Tested it with a provided tool
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		785ABDED255DC81F00DBDC48 /* HillClimbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */; };
+		785C58C92572CFC300200979 /* GRASP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C58C82572CFC300200979 /* GRASP.swift */; };
 		78EB5E3B2556C64D00D7B428 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E3A2556C64D00D7B428 /* main.swift */; };
 		78EB5E452556C66500D7B428 /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E422556C66500D7B428 /* Ride.swift */; };
 		78EB5E462556C66500D7B428 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EB5E432556C66500D7B428 /* Vehicle.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HillClimbing.swift; sourceTree = "<group>"; };
 		785C58C7256E53D700200979 /* hill_climbing_test_tool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hill_climbing_test_tool.png; sourceTree = "<group>"; };
+		785C58C82572CFC300200979 /* GRASP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRASP.swift; sourceTree = "<group>"; };
 		785C89B82563D0B5001A5BC5 /* e_high_bonus.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = e_high_bonus.in; sourceTree = "<group>"; };
 		785C89B92563D0B5001A5BC5 /* d_metropolis.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = d_metropolis.in; sourceTree = "<group>"; };
 		785C89BA2563D0B5001A5BC5 /* a_example.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = a_example.in; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				785ABDEC255DC81F00DBDC48 /* HillClimbing.swift */,
+				785C58C82572CFC300200979 /* GRASP.swift */,
 			);
 			path = Algorithm;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				78EB5E3B2556C64D00D7B428 /* main.swift in Sources */,
 				78EB5E4A2556D96C00D7B428 /* SimulationInput.swift in Sources */,
 				78EB5E472556C66500D7B428 /* Position.swift in Sources */,
+				785C58C92572CFC300200979 /* GRASP.swift in Sources */,
 				78EB5E772557106C00D7B428 /* String.swift in Sources */,
 				78EB5E452556C66500D7B428 /* Ride.swift in Sources */,
 			);

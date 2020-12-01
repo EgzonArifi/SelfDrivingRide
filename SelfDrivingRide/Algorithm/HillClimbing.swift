@@ -40,11 +40,10 @@ struct HillClimbing {
         return bestScore
     }
     
-    static func score(file: File, maxIterations: Int) -> Int {
+    static func solution(file: File, maxIterations: Int, rides: [Ride] = SimulationInput.rides) -> Simulation {
         
         let reader = Reader()
-        reader.read(file: file)
-        var solution = Simulation(rides: SimulationInput.rides)
+        var solution = Simulation(rides: rides)
         let startScore = solution.calculatedFitness
         var bestSolution = solution
         var bestScore = 0
@@ -61,6 +60,6 @@ struct HillClimbing {
             iterations -= 1
         }
         reader.write(vehicles: bestSolution.vehicles, toFile: file)
-        return bestScore
+        return bestSolution
     }
 }
