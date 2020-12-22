@@ -48,4 +48,11 @@ extension Array where Element == Ride {
         }
         self.remove(at: index)
     }
+    
+    mutating func addOrUpdate(ride: Ride) {
+        guard let rideIndex = firstIndex(where: { $0.id == ride.id }) else {
+            append(ride); return
+        }
+        self[rideIndex] = ride
+    }
 }

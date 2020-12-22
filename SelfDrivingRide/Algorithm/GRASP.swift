@@ -57,7 +57,7 @@ final class GRASP {
     
     func createComponents() {
         reader.read(file: file)
-        c = SimulationInput.rides
+        c = SimulationInput.rides.sorted { $0.stepsToEndRide < $1.stepsToEndRide }
     }
     
     var isCompleteSolution: Bool {

@@ -8,7 +8,6 @@ class Ride {
     private(set) var earliestStart: Int
     private(set) var latestFinish: Int
     private(set) var stepsToEndRide: Int = 0
-    var vehicle: Vehicle?
     
     init(
         id: Int,

@@ -30,7 +30,7 @@ struct HillClimbing {
         while bestScore < solution.fitness {
             bestScore = solution.fitness
             bestSolution = solution
-            solution = solution.randomHillClimbing()
+            solution = solution.tweak()
             print("New Hill: \(solution.fitness)")
         }
         
@@ -55,7 +55,7 @@ struct HillClimbing {
                 bestSolution = solution
                 bestScore = solution.fitness
             }
-            solution = solution.randomHillClimbing()
+            solution = solution.tweak()
             print("New Hill: \(solution.fitness)")
             iterations -= 1
         }

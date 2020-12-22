@@ -6,7 +6,8 @@ import Foundation
 
 //print("Enter max_iterations:")
 //let maxIterations = readLine()
-//print("Highest Hill: \(HillClimbing.score(file: .bData, maxIterations: maxIterations?.intValue ?? 4))")
+//Reader().read(file: .bData)
+//print("Highest Hill: \(HillClimbing.solution(file: .bData, maxIterations: maxIterations?.intValue ?? 4).fitness)")
 
 // MARK: - GRASP
 print("Enter total time:")
@@ -18,7 +19,7 @@ let percentage = Float(readLine() ?? "0.4") ?? 0.4
 print("Enter max_iterations:")
 let maxIterations = readLine().intValue
 
-let grasp = GRASP(file: .aData, totalTime: totalTime, p: percentage, m: maxIterations)
+let grasp = GRASP(file: .bData, totalTime: totalTime, p: percentage, m: maxIterations)
 grasp.grasp()
 
 print("Solution Score \(grasp.score)")
