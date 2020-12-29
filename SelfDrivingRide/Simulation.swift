@@ -81,6 +81,7 @@ extension Simulation {
     
     /// Swap rides of a given car
     func swapRidesOfaGivenCar() -> Simulation {
+        var population: [Simulation] = [self]
         let currentSolution = self
         guard let vehicle = currentSolution.vehicles.filter({ $0.assignedRides.count > 1 }).randomElement(),
               let vehicleRide1 = vehicle.assignedRides.randomElement(),
@@ -91,18 +92,30 @@ extension Simulation {
               let j = vehicle.assignedRides.firstIndex(where: { $0.id == vehicleRide2.id }) else { return self }
         
         vehicle.assignedRides.swapAt(i, j)
+        population.append(Simulation(rides: currentSolution.rides))
         
-        return currentSolution
+        guard let fittestElement = (population.max { $0.calculatedFitness < $1.calculatedFitness }) else { return self }
+        return fittestElement
     }
     
     /// Swap rides in the solution with those not in the solution
     func swapRideNotInSolution() -> Simulation {
+        var population: [Simulation] = [self]
         let currentSolution = self
+        
+        guard let firstVehicle = currentSolution.vehicles.first,
+              !currentSolution.vehicles.isEmpty,
+              !firstVehicle.assignedRides.isEmpty
+        else { return currentSolution }
+        
         currentSolution.vehicles.first?.assignedRides.removeFirst()
         guard let ride = currentSolution.unAssignedRides.first else { return self }
         currentSolution.vehicles.first?.assignedRides.addOrUpdate(ride: ride)
         unAssignedRides.remove(ride)
         
-        return currentSolution
+        population.append(Simulation(rides: currentSolution.rides))
+        
+        guard let fittestElement = (population.max { $0.calculatedFitness < $1.calculatedFitness }) else { return self }
+        return fittestElement
     }
 }

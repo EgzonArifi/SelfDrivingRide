@@ -73,7 +73,7 @@ final class GRASP {
     }
     
     func selectP(from c1: [Ride]) -> [Ride] {
-        let components = c1.sorted { $0.stepsToEndRide > $1.stepsToEndRide }
+        let components = c1.sorted { ($0.stepsToEndRide / SimulationInput.numberOfRides) > ($1.stepsToEndRide / SimulationInput.numberOfRides) }
         let maxLength = Float(components.count) * p
         return components.suffix(Int(maxLength))
     }
@@ -83,5 +83,30 @@ final class GRASP {
             best = simulation.vehicles
             self.score = simulation.fitness
         }
+    }
+}
+
+
+extension GRASP {
+    static func trainedPercentage(
+        file: File,
+        totalTime: Int,
+        m: Int
+    ) -> Float {
+        var percentage: Float = 0.1
+        var bestScore = 0
+        var bestPercentage = percentage
+        
+        while percentage != 1.0 {
+            let grasp = GRASP(file: .bData, totalTime: totalTime, p: percentage, m: maxIterations)
+            grasp.grasp()
+            if grasp.score > bestScore {
+                bestScore = grasp.score
+                bestPercentage = percentage
+            }
+            percentage += 0.1
+        }
+        
+        return bestPercentage
     }
 }

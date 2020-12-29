@@ -13,13 +13,11 @@ import Foundation
 print("Enter total time:")
 let totalTime = readLine().intValue
 
-print("Enter percentage:")
-let percentage = Float(readLine() ?? "0.4") ?? 0.4
-
 print("Enter max_iterations:")
 let maxIterations = readLine().intValue
 
-let grasp = GRASP(file: .bData, totalTime: totalTime, p: percentage, m: maxIterations)
+let trainedPercentage = GRASP.trainedPercentage(file: .bData, totalTime: totalTime, m: maxIterations)
+let grasp = GRASP(file: .bData, totalTime: totalTime, p: trainedPercentage, m: maxIterations)
 grasp.grasp()
 
 print("Solution Score \(grasp.score)")
