@@ -1,11 +1,11 @@
 //
 //    a_example: 10
-//    b_should_be_easy: 172,751
-//    c_no_hurry: 6,609,085
-//    d_metropolis: 4,127,710
-//    e_high_bonus: 15,643,082
+//    b_should_be_easy: 169,986
+//    c_no_hurry: 8,272,602
+//    d_metropolis: 8,505,007
+//    e_high_bonus: 20,832,290
 //
-//    total: 26,533,538
+//    total: 37,626,895
 
 import Foundation
 
@@ -41,23 +41,27 @@ struct HillClimbing {
     }
     
     static func solution(file: File, maxIterations: Int, rides: [Ride] = SimulationInput.rides) -> Simulation {
-        
+        // Read
         let reader = Reader()
+        
+        // Generate
         var solution = Simulation(rides: rides)
+        
+        // Evaluate
         let startScore = solution.calculatedFitness
-        var bestSolution = solution
-        var bestScore = 0
+        var bestSolution = solution.copy() as! Simulation
+        var bestScore = solution.fitness
         var iterations = maxIterations
         
         print("Start Hill: \(startScore)")
         while iterations > 0 {
-            if solution.fitness > bestScore {
-                bestSolution = solution
-                bestScore = solution.fitness
-            }
             solution = solution.tweak()
             print("New Hill: \(solution.fitness)")
             iterations -= 1
+            if solution.fitness > bestScore {
+                bestSolution = solution.copy() as! Simulation
+                bestScore = solution.fitness
+            }
         }
         reader.write(vehicles: bestSolution.vehicles, toFile: file)
         return bestSolution

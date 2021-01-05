@@ -1,6 +1,6 @@
 import Foundation
 
-class Simulation {
+class Simulation: NSCopying {
     
     var fitness = 0
     var rides: [Ride]
@@ -8,9 +8,17 @@ class Simulation {
     var unAssignedRides = [Ride]()
     
     init(rides: [Ride]) {
-        let sortedRides = rides.sorted { $0.stepsToEndRide < $1.stepsToEndRide }
+        let sortedRides = rides.sorted { $0.earliestStart < $1.earliestStart }
         self.rides = sortedRides
         assignRides()
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Simulation(rides: rides)
+        copy.fitness = fitness
+        copy.vehicles = vehicles
+        copy.unAssignedRides = unAssignedRides
+        return copy
     }
 }
 
@@ -19,8 +27,18 @@ extension Simulation {
     
     func assignRides() {
         
-        rides.forEach { ride in
-            guard let randomVehicle = vehicles.randomElement(),
+        var calculatedRides = [Ride]()
+        calculatedRides.append(contentsOf: rides)
+        
+        for vehicle in vehicles {
+            guard let ride = calculatedRides.first,
+                  let firstIndex = self.vehicles.firstIndex(where: { $0.id == vehicle.id } ) else { return }
+            vehicles[firstIndex].addRide(ride: ride)
+            calculatedRides.remove(ride)
+        }
+        
+        calculatedRides.forEach { ride in
+            guard let randomVehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).suffix(10).randomElement(),
                   randomVehicle.isRideExpired(ride: ride) == false
             else {
                 unAssignedRides.append(ride)
@@ -31,7 +49,8 @@ extension Simulation {
         }
         
         unAssignedRides.forEach { ride in
-            guard let ride = unAssignedRides.first, let vehicle = vehicles.first(where: { $0.isRideExpired(ride: ride) == false }) else { return }
+            guard let vehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).suffix(10).randomElement(),
+                  vehicle.isRideExpired(ride: ride) == false else { return }
             vehicle.assignedRides.addOrUpdate(ride: ride)
             unAssignedRides.remove(ride)
         }

@@ -39,6 +39,13 @@ extension Array where Element == Vehicle {
         }
         self[vehicleIndex] = vehicle
     }
+    
+    mutating func remove(_ vehicle: Vehicle) {
+        guard let index = firstIndex(where: { $0.id == vehicle.id }) else {
+            return
+        }
+        self.remove(at: index)
+    }
 }
 
 extension Array where Element == Ride {

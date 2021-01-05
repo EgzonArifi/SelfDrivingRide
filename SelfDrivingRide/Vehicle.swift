@@ -20,7 +20,6 @@ extension Vehicle {
         var currentPosition = Position(row: 0, column: 0)
         var currentStep = 0
         var score = 0
-        sortRides()
         
         assignedRides.forEach { ride in
             
@@ -41,6 +40,25 @@ extension Vehicle {
             
             currentPosition = ride.endPosition
         }
+        return score
+    }
+    
+    func score(for ride: Ride) -> Int {
+        var currentStep = self.currentStep
+        currentStep += currentPosition.distance(to: ride.startPosition)
+        var score = 0
+        let time = max(ride.earliestStart, currentStep)
+        
+        if time == ride.earliestStart {
+            score += SimulationInput.bonus
+        }
+        
+        currentStep = time + ride.stepsToEndRide
+        
+        if currentStep <= ride.latestFinish {
+            score += ride.stepsToEndRide
+        }
+        
         return score
     }
     

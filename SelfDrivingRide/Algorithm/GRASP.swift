@@ -97,7 +97,7 @@ extension GRASP {
         var bestScore = 0
         var bestPercentage = percentage
         
-        while percentage != 1.0 {
+        while percentage <= 1.01 {
             let grasp = GRASP(file: .bData, totalTime: totalTime, p: percentage, m: maxIterations)
             grasp.grasp()
             if grasp.score > bestScore {
