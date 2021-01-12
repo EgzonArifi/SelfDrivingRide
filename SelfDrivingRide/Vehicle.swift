@@ -93,9 +93,6 @@ extension Vehicle {
     }
     
     func addRide(ride: Ride) {
-        guard score(for: ride) != Int.min else {
-          return
-        }
         currentStep += currentPosition.distance(to: ride.startPosition)
         currentPosition = ride.startPosition
         
