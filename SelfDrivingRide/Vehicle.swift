@@ -43,20 +43,30 @@ extension Vehicle {
         return score
     }
     
+    func stepsToStart(ride: Ride) -> Int {
+        var currentStep = self.currentStep
+        currentStep += currentPosition.distance(to: ride.startPosition)
+        return currentStep
+    }
+  
     func score(for ride: Ride) -> Int {
         var currentStep = self.currentStep
         currentStep += currentPosition.distance(to: ride.startPosition)
-        var score = 0
+        var score = Int.min
         let time = max(ride.earliestStart, currentStep)
         
         if time == ride.earliestStart {
+            if score == Int.min { score = 0 }
             score += SimulationInput.bonus
         }
         
         currentStep = time + ride.stepsToEndRide
         
         if currentStep <= ride.latestFinish {
+            if score == Int.min { score = 0 }
             score += ride.stepsToEndRide
+        } else {
+          score = Int.min
         }
         
         return score
@@ -83,6 +93,9 @@ extension Vehicle {
     }
     
     func addRide(ride: Ride) {
+        guard score(for: ride) != Int.min else {
+          return
+        }
         currentStep += currentPosition.distance(to: ride.startPosition)
         currentPosition = ride.startPosition
         
