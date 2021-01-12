@@ -8,8 +8,8 @@ class Simulation: NSCopying {
     var unAssignedRides = [Ride]()
     
     init(rides: [Ride]) {
-        //let sortedRides = rides.sorted { $0.earliestStart > $1.earliestStart }
-        self.rides = rides
+        let sortedRides = rides.sorted { $0.earliestStart < $1.earliestStart }
+        self.rides = sortedRides
         assignRides()
     }
     
