@@ -51,6 +51,8 @@ extension Array where Element == Vehicle {
     switch inputFile {
     case .eData:
       return suffix(100)
+    case .bData:
+      return suffix(80)
     default:
       return prefix(100000)
     }
