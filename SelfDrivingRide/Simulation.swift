@@ -8,8 +8,8 @@ class Simulation: NSCopying {
     var unAssignedRides = [Ride]()
     
     init(rides: [Ride]) {
-        let sortedRides = rides.sorted { $0.earliestStart < $1.earliestStart }
-        self.rides = sortedRides
+        //let sortedRides = rides.sorted { $0.earliestStart > $1.earliestStart }
+        self.rides = rides
         assignRides()
     }
     
@@ -31,15 +31,17 @@ extension Simulation {
         calculatedRides.append(contentsOf: rides)
         
         for vehicle in vehicles {
-            guard let ride = calculatedRides.first,
-                  let firstIndex = self.vehicles.firstIndex(where: { $0.id == vehicle.id } ) else { return }
+          if let ride = calculatedRides.filter({ vehicle.score(for: $0) != Int.min }).prefix(20).randomElement(),
+             let firstIndex = self.vehicles.firstIndex(where: { $0.id == vehicle.id } ),
+             vehicle.score(for: ride) != Int.min {
             vehicles[firstIndex].addRide(ride: ride)
             calculatedRides.remove(ride)
+          }
         }
         
         calculatedRides.forEach { ride in
-            guard let randomVehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).suffix(10).randomElement(),
-                  randomVehicle.isRideExpired(ride: ride) == false
+          guard let randomVehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).prefixing().randomElement(),
+                  randomVehicle.score(for: ride) != Int.min
             else {
                 unAssignedRides.append(ride)
                 return
@@ -49,8 +51,9 @@ extension Simulation {
         }
         
         unAssignedRides.forEach { ride in
-            guard let vehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).suffix(10).randomElement(),
-                  vehicle.isRideExpired(ride: ride) == false else { return }
+            guard let vehicle = vehicles.sorted(by: { $0.score(for: ride) < $1.score(for: ride) }).prefix(20).randomElement(),
+                  vehicle.score(for: ride) != Int.min
+            else { return }
             vehicle.assignedRides.addOrUpdate(ride: ride)
             unAssignedRides.remove(ride)
         }
@@ -67,10 +70,11 @@ extension Simulation {
 extension Simulation {
     
     func tweak() -> Simulation {
-        var currentSolution = swapRidesBetweenCars()
-        currentSolution = currentSolution.swapRidesOfaGivenCar()
-        currentSolution = currentSolution.swapRideNotInSolution()
-        return currentSolution
+      let _ : [Simulation] = [self]
+      let currentSolution = self
+      let sulutino = Simulation(rides: currentSolution.rides)
+      _ = sulutino.calculatedFitness
+      return sulutino
     }
 
     /// Swap rides between two given cars
@@ -78,19 +82,19 @@ extension Simulation {
         
         var population: [Simulation] = [self]
         let currentSolution = self
-        
-        let vehicle1 = currentSolution.vehicles.randomElement()
-        let vehicle2 = currentSolution.vehicles.randomElement()
-        
+
+        let vehicle1 = currentSolution.vehicles.filter({ !$0.assignedRides.isEmpty }).randomElement()
+        let vehicle2 = currentSolution.vehicles.filter({ !$0.assignedRides.isEmpty }).randomElement()
+
         if let vehicle1Ride = vehicle1?.assignedRides.randomElement(),
            let vehicle2Ride = vehicle2?.assignedRides.randomElement()  {
-            
+
             vehicle1?.assignedRides.remove(vehicle1Ride)
             vehicle1?.assignedRides.addOrUpdate(ride: vehicle2Ride)
-            
+
             vehicle2?.assignedRides.remove(vehicle2Ride)
             vehicle2?.assignedRides.addOrUpdate(ride: vehicle1Ride)
-            
+
             population.append(Simulation(rides: currentSolution.rides))
         }
         guard let fittestElement = (population.max { $0.calculatedFitness < $1.calculatedFitness }) else { return self }
@@ -122,12 +126,12 @@ extension Simulation {
         var population: [Simulation] = [self]
         let currentSolution = self
         
-        guard let firstVehicle = currentSolution.vehicles.first,
+      guard let firstVehicle = currentSolution.vehicles.first(where: { !$0.assignedRides.isEmpty }),
               !currentSolution.vehicles.isEmpty,
               !firstVehicle.assignedRides.isEmpty
         else { return currentSolution }
         
-        currentSolution.vehicles.first?.assignedRides.removeFirst()
+        currentSolution.vehicles.first(where: { !$0.assignedRides.isEmpty })?.assignedRides.removeFirst()
         guard let ride = currentSolution.unAssignedRides.first else { return self }
         currentSolution.vehicles.first?.assignedRides.addOrUpdate(ride: ride)
         unAssignedRides.remove(ride)

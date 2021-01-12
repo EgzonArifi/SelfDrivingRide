@@ -46,6 +46,19 @@ extension Array where Element == Vehicle {
         }
         self.remove(at: index)
     }
+  
+  func prefixing() -> ArraySlice<Element> {
+    switch inputFile {
+    case .eData:
+      return suffix(100)
+    default:
+      return prefix(100000)
+    }
+  }
+  
+  func nearest(_ maxLength: Int = 100, ride: Ride) -> ArraySlice<Element> {
+    return sorted(by: { $0.stepsToStart(ride: ride) < $1.stepsToStart(ride: ride) }).prefixing()
+  }
 }
 
 extension Array where Element == Ride {

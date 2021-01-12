@@ -1,22 +1,20 @@
+//
+//    a_example: 10
+//    b_should_be_easy: 176,727
+//    c_no_hurry: 8,272,602
+//    d_metropolis: 8,505,007
+//    e_high_bonus: 21,465,945
+//
+//    total: 38,267,291
+
 import Foundation
 
-// MARK: - Hill Climbing
-
-print("Enter max_iterations:")
-let maxIterations = readLine().intValue
-let inputFile: File  = .eData
-Reader().read(file: inputFile)
-print("Highest Hill: \(HillClimbing.solution(file: inputFile, maxIterations: maxIterations).fitness)")
-
 // MARK: - GRASP
-print("Enter total time:")
-let totalTime = readLine().intValue
+//print("Enter total time:")
+//let totalTime = readLine().intValue
 
+let inputFile: File  = .cData
 print("Enter max_iterations:")
 let maxIterations = readLine().intValue
 
-let trainedPercentage: Float = GRASP.trainedPercentage(file: .bData, totalTime: totalTime, m: maxIterations)
-let grasp = GRASP(file: .cData, totalTime: totalTime, p: trainedPercentage, m: maxIterations)
-grasp.grasp()
-
-print("Solution Score \(grasp.score)")
+grasp(inputFile: inputFile, totalTime: 10, maxIterations: maxIterations)

@@ -1,12 +1,3 @@
-//
-//    a_example: 10
-//    b_should_be_easy: 169,986
-//    c_no_hurry: 8,272,602
-//    d_metropolis: 8,505,007
-//    e_high_bonus: 20,832,290
-//
-//    total: 37,626,895
-
 import Foundation
 
 struct HillClimbing {

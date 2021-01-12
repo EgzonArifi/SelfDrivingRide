@@ -54,3 +54,15 @@ struct Reader {
         }
     }
 }
+
+
+func grasp(inputFile: File, totalTime: Int = 10, maxIterations: Int) {
+//  let trainedPercentage: Float = 1.0//GRASP.trainedPercentage(file: .bData, totalTime: totalTime, m: maxIterations)
+//  let grasp = GRASP(file: .cData, totalTime: totalTime, p: trainedPercentage, m: maxIterations)
+//  grasp.grasp()
+//  
+//  print("Solution Score \(grasp.score)")
+
+  Reader().read(file: inputFile)
+  print("Highest Hill: \(HillClimbing.solution(file: inputFile, maxIterations: maxIterations).fitness)")
+}
