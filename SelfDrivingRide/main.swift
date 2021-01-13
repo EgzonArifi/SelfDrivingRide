@@ -10,11 +10,11 @@
 import Foundation
 
 // MARK: - GRASP
-//print("Enter total time:")
-//let totalTime = readLine().intValue
+print("Enter total time:")
+let totalTime = readLine()?.intValue ?? 10
 
-let inputFile: File  = .cData
+let inputFile: File  = .bData
 print("Enter max_iterations:")
 let maxIterations = readLine().intValue
 
-grasp(inputFile: inputFile, totalTime: 10, maxIterations: maxIterations)
+grasp(inputFile: inputFile, totalTime: totalTime, maxIterations: maxIterations)
